@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title> Text Editor </title>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.2/angular.js"></script>
+	<style type="text/css">
+		.dropbtn 
+		{
+
+			background-color: #4CAF50;
+			color: white;
+			padding: 16px;
+			font-size: 16px;
+			border: none;
+			cursor: pointer;
+		}
+		.dropdown
+		{
+		  position: relative;
+		  display: inline-block;
+		}
+
+		.dropdown-content
+		{
+		  display: none;
+		  position: absolute;
+		  background-color: #f9f9f9;
+		  min-width: 160px;
+		  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+		  z-index: 1;
+		}
+
+		/* Links inside the dropdown */
+		.dropdown-content a
+		{
+		  color: black;
+		  padding: 12px 16px;
+		  text-decoration: none;
+		  display: block;
+		}
+
+		/* Change color of dropdown links on hover */
+		.dropdown-content a:hover
+		{
+			background-color: #f1f1f1
+		}
+
+		/* Show the dropdown menu on hover */
+		.dropdown:hover .dropdown-content
+		{
+		  display: block;
+		}
+	</style>
+</head>
+<body  ng-controller = "app" ng-app = "myapp"> 
+
+	<div style="display: flex; text-align: center; align-items: center; flex-flow: column;">
+		<div style="width: 500px">
+	 			<h3> All Files</h3>
+		</div>
+		<table  ng-repeat = "x in list track by $index" >
+			<tr> <td style="width: 500px"> <span style="float:left;"> {{ x.fileName }}             </span> 
+		    	<button style = "float:right" ng-click = "x.show = toggle(x.show); x.text = toggle2(x.text); save(); " > {{ x.text }} </button>
+				<button style = "float:right" ng-click="downloadFile(x.fileName, x.data); " >Download </button>
+				<button style = "float:right" ng-click="open(x.data, x.fileName); " >Open</button>
+			</td> </tr>
+			<tr> <td> <textarea  ng-hide = "x.show" style=" height: 300px; width: 500px;" ng-model = "x.data" readonly="true">   </textarea> </td> </tr>
+		</table>
+
+		<div style="width: 500px;">  
+			<span class = "dropdown" style="float: left;"> 
+				<button class="dropbtn">File</button>
+				<div class="dropdown-content">
+				    <a href="#" ng-click = "upload_show=false; newfile_show = true; newFileName =''; newFileData='' ">New</a>
+				    <a href="#" ng-click = "Save(newFileName,newFileData);">Save</a>
+				    <a href="#"  ng-click = "upload_show=true; newfile_show = false; ">Upload</a>
+            	</div>
+
+			</span>
+			<span class = "dropdown" style="float: left;"> 
+				<button class="dropbtn">Edit</button>
+				<div class="dropdown-content">
+				    <a href="#" onclick = "cutit()">Cut</a>
+				    <a href="#" onclick = "copyit()">Copy</a>
+				    <a href="#" ng-click="pasteit()">Paste</a>
+            	</div>
+
+			</span>
+			<div class = "upload_cont" ng-show = "upload_show"> 
+				<h3> Upload File </h3>
+				<table>
+					<tr>
+						<td>Upload : </td>
+						<td><input type="file" id="fileToLoad"></td>
+						<td><button  ng-click = "loadFileAsText(); ">Open</button></td>
+					</tr>
+				</table>
+			</div>
+			<div class ="newFile" ng-show = "newfile_show">
+				<h3> Create New File </h3>
+				<form>
+					<div style="text-align: left;"> File Name : <input ng-model = "newFileName"> </div>  
+					<br>
+					<textarea class="js-cuttextarea" ng-model = "newFileData" style="padding:0px; height: 200px; width: 500px;" placeholder="Enter  Text">
+					</textarea> 
+				</form>
+				
+			</div>
+		</div>
+	</div>	
+	<script type="text/javascript">
+
+		var cutTextareaBtn = document.querySelector('.js-textareacutbtn');
+		function cutit()
+		{
+		  var cutTextarea = document.querySelector('.js-cuttextarea');
+
+		    var successful = document.execCommand('cut');
+		    var msg = successful ? 'successful' : 'unsuccessful';
+		    console.log('Cutting text command was ' + msg);
+
+		}
+		function copyit()
+		{
+			var cutTextarea = document.querySelector('.js-cuttextarea');
+		    var successful = document.execCommand('copy');
+		    var msg = successful ? 'successful' : 'unsuccessful';
+		    console.log('Cutting text command was ' + msg);
+		}
+		angular.module("myapp",[]).controller('app', function($scope)
+		{
+			$scope.list = JSON.parse(localStorage.getItem('Array'));
+			if($scope.list==null)
+			{
+				$scope.list = [];
+			}
+			$scope.pasteit =  function()
+			{
+				var cutTextarea = document.querySelector('.js-cuttextarea');
+				navigator.clipboard.readText().then( function(clipText)
+				{
+	  				prev = "";
+	  				if(cutTextarea.selectionStart!=0)
+	  					prev = cutTextarea.value.substring(0, cutTextarea.selectionStart);
+	  				next = "";
+	  				if(cutTextarea.selectionEnd!=cutTextarea.value.length)
+  						next =  cutTextarea.value.substring(cutTextarea.selectionEnd, cutTextarea.value.length);
+	  				console.log(prev+ clipText +next);
+	 				console.log("Clip :" + clipText);
+	 				cutTextarea.value = prev + clipText + next;
+	 				$scope.newFileData = cutTextarea.value;
+	 				$scope.$apply();
+	  			});
+			}
+			$scope.loadFileAsText = function()
+			{
+				let fileToLoad = document.getElementById("fileToLoad").files[0];
+				let fileReader = new FileReader();
+				let new_obj = 
+				{
+					fileName : fileToLoad.name,
+					data :"",
+					show : true,
+					text : "Show"
+				};
+				fileReader.onload = function(fileLoadedEvent) 
+				{
+					let textFromFileLoaded = fileLoadedEvent.target.result;
+					new_obj.data = textFromFileLoaded;
+					$scope.upload_show = false;
+					$scope.newfile_show = true;
+
+					$scope.newFileData = new_obj.data;
+					$scope.newFileName = new_obj.fileName;
+					$scope.$apply();
+					console.log(new_obj);
+				};
+				fileReader.readAsText(fileToLoad, "UTF-8");	
+			}
+			$scope.Save = function(fileName, fileData)
+			{
+				if(fileName==null)
+				{
+					alert("Enter File Name");
+					return false;
+				}
+				let new_obj = 
+				{
+					fileName : fileName,
+					data : fileData,
+					show : true,
+					text : "Show"
+				};
+				$scope.list.push(new_obj);
+					save();
+				$scope.$apply();
+		
+			}
+			$scope.open =  function(fileName,data)
+			{
+				$scope.upload_show = false;
+				$scope.newfile_show = true;
+
+				$scope.newFileData = fileName;
+				$scope.newFileName = data;
+			}
+			$scope.downloadFile = function(fileName,data)
+			{
+
+				var textToSaveAsBlob = new Blob([data], {type:"text/plain"});
+				var textToSaveAsURL = window.URL.createObjectURL(textToSaveAsBlob);
+				var fileNameToSaveAs = fileName;
+				var downloadLink = document.createElement("a");
+				downloadLink.download = fileNameToSaveAs;
+				downloadLink.innerHTML = "Download File";
+				downloadLink.href = textToSaveAsURL;
+				downloadLink.style.display = "none";
+				downloadLink.click();
+			}
+			$scope.save = function()
+			{
+				localStorage.setItem("Array", JSON.stringify($scope.list));
+			}
+			save = function()
+			{
+				localStorage.setItem("Array", JSON.stringify($scope.list));
+			}
+			$scope.toggle = function(x)
+			{
+					return (x^true);
+			}
+			$scope.toggle2 = function(x)
+			{
+				if(x==='Show') return 'Hide';
+				else return 'Show';
+
+			}
+		})
+	</script>
+</body>
+</html>
