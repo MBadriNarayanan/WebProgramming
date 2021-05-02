@@ -1,0 +1,187 @@
+<!DOCTYPE>
+<html lang = "en">
+<head>
+
+	<meta charset="UTF-8">
+	<meta name="description" content="Portfolio Web Page">
+	<meta name="keywords" content="HTML5, CSS3, JavaScript">
+	<meta name="author" content="M Badri Narayanan">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  	<title>My Second Web Page</title>
+	<link rel="icon" type="image/x-icon" href="images/favicon.ico" />
+	<link rel="stylesheet" href="style.css">
+
+<style>
+	p.static 
+	{
+	  position: static;
+	  text-align: center;
+	  color: red;
+	}
+	p.border
+	{
+		width: 11em;
+		border-style: groove;
+		word-wrap: break-word;
+	}
+	div.transition 
+	{
+	  width: 70px;
+	  height: 70px;
+	  background: navy;
+	  color: white;
+	  transition: width 2s, height 4s;
+	}
+	div.transition:hover 
+	{
+	  width: 100px;
+	  height: 100px;
+	}
+	canvas
+	{
+		display : inline-block;
+	}
+</style>
+<body>
+		<header>
+			<h5>M Badri Narayanan Curriculum Vitae</h5><br>
+			<div id ="animated_div">Badri</div>
+			<audio controls>
+				  <source src="Audio.mp3" type="audio/mpeg">
+				Your browser does not support the audio element.
+			</audio>
+			<video height = 200 video = 200 controls>
+				  <source src="Video.mp4" type="video/mp4">
+				Your browser does not support the video tag.
+			</video>
+			<br>
+			<br>
+			<button onclick = "getLocation()">Click Here To Get Your Location</button>
+			<p id = "location"></p>
+			<script>
+				var x = document.getElementById("location");
+
+				function getLocation()
+				{
+					if (navigator.geolocation)
+					{
+						navigator.geolocation.getCurrentPosition(showPosition);
+					}
+					else
+					{ 
+						x.innerHTML = "Geolocation is not supported by this browser.";
+					}
+				}
+				function showPosition(position)
+				{
+					const name="<iframe src='http://maps.google.com/maps?q=";
+					const name2="&z=16&output=embed' height='450' width='600'>";
+					x.innerHTML= name+position.coords.latitude+','+position.coords.longitude+name2;
+				}
+			</script>
+		</header>
+
+		<h1 class = "header" style="color:navy;">M Badri Narayanan</h1>
+
+		<img src = "Profile.png" alt = "My Profile Picture" usemap="#profile" height = "200" width = "200"></img><br>
+
+		<map name="profile">
+		  	<area shape = "rect" coords="0,0,100,100" alt = "My GitHub Profile" href="https://github.com/MBadriNarayanan" target="_blank">
+		  	<area shape = "rect" coords="100,100,200,200" alt = "My LinkedIn Profile" href="https://www.linkedin.com/in/mbadrinarayanan" target="_blank">
+		</map>
+
+	<h3>My Social Networking Sites</h3>
+		<ol>
+			<li><a href="https://github.com/MBadriNarayanan" target="_blank">GitHub</span></a></li>
+			<li><a href="https://www.linkedin.com/in/mbadrinarayanan" target="_blank">LinkedIn</a></li>
+		</ol>
+
+		<iframe src="https://mbadrinarayanan.github.io/" width="400" height="280" title="My existing portfolio website"></iframe>
+
+		<h3>Summary</h3>
+
+		<p class = "static">I am currently pursuing my bachelors in Information Technology from SSN College of Engineering, Chennai. I am interested in the fields of Machine Learning , Deep Learning, Natural Language Processing, Computer Vision and Data Science.I would like to work in the aforementioned fields and develop real world solutions. I am also an avid sports fan and my hobbies include playing cricket, listening to music, watching movies and reading books.</p>
+
+		<a href = #EducationDetails>My Education Details</a><br>
+		<a href = #ExtraCurricular>Extra Curricular</a><br>
+		<a href = #Awards>Awards</a><br>
+		<a href = #Contact>Contact</a>
+
+
+		<a name = "EducationDetails"></a>
+		<h4>My Education Details</h4>
+		<table border="1" allign="left" width="40%">
+			<tr><td>College / School</td><td>Grade</td><td>Marks Obtained</td></tr>
+			<tr><td>SSN College of Engineering, Chennai</td><td>BTech Information Technology</td><td>Current GPA : 8.828 (V Semester)</td></tr>
+			<tr><td>Vidya Mandir Senior Secondary School, Chennai</td><td>12<sup>th</sup> Grade, Computer Science Group</td><td>94.4 %</td></tr>
+			<tr><td>Vidya Mandir Senior Secondary School, Chennai</td><td>10<sup>th</sup> Grade</td><td>8.8</td></tr>
+		</table>
+
+		<a name = "ExtraCurricular"></a>
+		<h4>Extra Curricular</h4>
+		<ul>
+			<li>Volunteering with Chennai Volunteers to teach spoken English classes for Tamil medium students.</li>
+			<li>Captained the school cricket team</li>
+			<li>Represented the college cricket team</li>
+		</ul>
+
+		<a name = "Awards"></a>
+		<h4>Awards</h4>
+		<ul>
+			<li>Won the 2<sup>nd</sup> best project in Computer Science in 12<sup>th</sup> grade.</li>
+			<li>Stood school 3<sup>rd</sup> in Chemistry in 12<sup>th</sup> grade.</li>
+		</ul>
+
+		<a name = "Contact"></a>
+		<h4>Contact</h4>
+		<form method="post" action="#">
+			<label for = "title">Title</label><br>
+				<input type = "text" name = "title" id = "title" placeholder = "Mr" pattern = "^[a-zA-Z\s]*$" required><br>
+			<label for = "fname">First Name</label><br>
+				<input type = "text" name = "firstname" id = "fname" placeholder = "John" pattern = "^[a-zA-Z\s]*$" required><br>
+			<label for = "lname">Last Name</label><br>
+				<input type = "text" name = "lastname" id = "lname" placeholder = "Doe" pattern = "^[a-zA-Z\s]*$" required><br>
+			<label for="mobile">Phone Number</label><br>
+  				<input type = "mobile" id = "mobile" name = "mobile" placeholder = "9876543210" pattern="[0-9]{10}" required><br>
+			<label for = "email">Email</label><br>
+				<input type = "text" name = "email" id = "email" placeholder = "johndoe@xyz.com" pattern = "[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required><br>
+			<label for = "message">Message</label><br>
+				<textarea name = "message" id="message" placeholder = "Write your message..." style="margin: 0px; width: 168px; height: 91px;" required></textarea><br><br>
+			<input type = "submit" value = "Send Message">
+		</form>
+
+		<footer>
+			<div class = "transition">M Badri Naryanan</div><br>
+			<svg width="100" height="100">
+	 			<circle cx="50" cy="50" r="40" stroke="green" stroke-width="4" fill="red" />
+	 			<a href="https://mbadrinarayanan.github.io/" target ="_blank"><text x="18" y="53">Click Here</text></a>
+			</svg>
+			<p class = "border">Web Page created for Web Programming Lab in the VI Semester.</p>
+			<canvas id="Canvas" width="200" height="100" style="border:1px solid #d3d3d3;">Your browser does not support the HTML canvas tag.</canvas>
+			<br>
+			<button onclick = "changedom()">Click Here To Perform DOM Manipulation.</button>
+			<p id = "dom">DOM Manipulation.</p>
+			<script>
+				var x = document.getElementById("dom");
+
+				function changedom()
+				{
+					x.innerHTML = "Text changed by DOM Manipulation.";
+				}
+			</script>
+			<script>
+				var c = document.getElementById("Canvas");
+				var ctx = c.getContext("2d");
+
+				var grd = ctx.createRadialGradient(75,50,5,90,60,100);
+				grd.addColorStop(0,"red");
+				grd.addColorStop(1,"white");
+
+				ctx.fillStyle = grd;
+				ctx.fillRect(10,10,150,80);
+			</script>
+		</footer>
+
+			
+</body>
+</html>
