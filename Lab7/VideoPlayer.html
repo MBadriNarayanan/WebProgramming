@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+	<head>
+
+	    <meta charset="UTF-8">
+		<meta name="description" content="Portfolio Web Page">
+		<meta name="keywords" content="HTML5, CSS3, JavaScript">
+		<meta name="author" content="M Badri Narayanan">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	  	<title>Video Player</title>
+		<link rel="icon" type="image/x-icon" href="images/favicon.ico" />
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.2/angular.js"></script>
+		<script src="https://kit.fontawesome.com/2d6fc4f13c.js" crossorigin="anonymous"></script>
+
+	</head>
+	<body>
+			<div style="display: flex; flex-flow: column; align-items: center;" ng-app = "myApp" ng-controller = "myCtrl">
+				<video  ng-click = "count = count+1;toggle(count);" style="width: 500px; height: 400px;" id="myVideo">
+					<source  id="mp4_src" src="Video.mp4" type="video/mp4">
+				</video>
+
+				<div>
+					<button id = "play" ng-click="playVid()" type="button"><i class="fas fa-play fa-2x"></i></button>
+					<button ng-click="pauseVid()" type="button"><i class="fas fa-pause fa-2x"></i></button> 
+					<button ng-click="rate(+0.5)" type="button"><i class="fas fa-fast-forward fa-2x" ></i></button> 
+					<button ng-click="rate(-0.5)" type="button"><i class="fas fa-fast-backward fa-2x"></i></button> 
+					<button ng-click="forwardVid(10)" type="button"><i class="fas fa-forward fa-2x"></i></button> 
+					<button ng-click="rewindVid(10)" type="button"><i class="fas fa-backward fa-2x"></i></button> 
+
+					<button ng-click="replay()" type="button"><i class="fas fa-redo fa-2x"></i></button> 
+					<button ng-click="mute()"><i class="fas fa-volume-mute fa-2x"></i></button>
+					<button ng-click="unmute()"> <i class="fas fa-volume-up fa-2x"></i> </button>
+				</div>
+
+			</div>
+
+			<script>
+
+				var x = document.getElementById("myVideo"); 
+				var app = angular.module('myApp', []);
+
+				app.controller('myCtrl', function ($scope)
+				{
+
+					$scope.playVid = function()
+					{
+					  $scope.count = 0;
+					    x.play(); 
+					}
+					$scope.rate = function(y)
+					{
+					  x.playbackRate += y;
+					}
+					$scope.pauseVid = function()
+					{
+					   $scope.count = 1;
+					    x.pause(); 
+					}
+					$scope.toggle = function(c)
+					{
+					   console.log("hel");
+					   c = c%2;
+					   if(c==1) x.pause();
+					   else x.play();
+					}
+					$scope.rewindVid = function(time)
+					{
+
+					    x.currentTime-=time;
+					     x.currentTime = max1(x.currentTime,0);
+					}
+
+					$scope.forwardVid = function(time)
+					{
+
+					    x.currentTime+=time;
+					    x.currentTime = min1(x.currentTime,x.duration);
+					}
+					$scope.mute = function()
+					{
+					  x.muted = true;
+					}
+					$scope.unmute = function()
+					{
+					  x.muted = false;
+
+					}
+					min1 = function(x,y)
+					{
+					  return x>y?y:x;
+					}
+					max1 = function(x,y)
+					{
+					  return x>y?x:y;
+					}
+
+					$scope.replay = function()
+					{
+					   x.pause();
+					   x.currentTime = 0;
+					   $scope.count = 0;
+					   x.load();
+					    x.play();
+					}
+
+				});
+			</script>
+	</body>
+</html>
