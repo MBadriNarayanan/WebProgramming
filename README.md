@@ -5,6 +5,8 @@ Web Programming Lab work done in Semester VI.
 
 ## [Lab 2: HTML Form and DOM](https://github.com/MBadriNarayanan/WebProgramming/tree/main/Lab2)
 
+## [Lab 3: Angular JS- Simple calculator, Component, Controller, Service and Filters](https://github.com/MBadriNarayanan/WebProgramming/tree/main/Lab3)
+
 ## [Lab 7: Video Player Using Angular JS](https://github.com/MBadriNarayanan/WebProgramming/tree/main/Lab7)
 
 ## [Lab 8: Text Editor Using Angular JS](https://github.com/MBadriNarayanan/WebProgramming/tree/main/Lab8)
