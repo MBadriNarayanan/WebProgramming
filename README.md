@@ -16,3 +16,5 @@ Web Programming Lab work done in Semester VI.
 ## [Lab 8: Text Editor Using Angular JS](https://github.com/MBadriNarayanan/WebProgramming/tree/main/Lab8)
 
 ## [Lab 9: Node JS and MongoDB](https://github.com/MBadriNarayanan/WebProgramming/tree/main/Lab9)
+
+## [Lab 10: MEAN Stack](https://github.com/MBadriNarayanan/WebProgramming/tree/main/Lab10)
