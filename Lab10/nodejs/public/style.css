@@ -1,0 +1,22 @@
+body 
+{
+  background-color: linen;
+}
+ul
+{
+  background-color: lightblue;
+  width: 20%;
+  padding: 25px;
+}
+p.static 
+{
+  position: static;
+  text-align: center;
+  color: red;
+}
+p.border
+{
+	width: 11em;
+	border-style: groove;
+	word-wrap: break-word;
+}
