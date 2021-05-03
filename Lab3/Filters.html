@@ -1,0 +1,52 @@
+<!DOCTYPE>
+<html lang = "en">
+<head>
+        <title>Filters</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+</head>
+<body>
+
+        <h2>Filters</h2>
+
+        <div ng-app="myApp" ng-controller="namesCtrl">
+
+            <h4>My technical skills</h4>
+            <p>Type a letter in the input field to filter accordingly</p>
+
+            <p><input type="text" ng-model="test"></p>
+
+            <ul>
+              <li ng-repeat="x in names | filter:test">
+                {{ x }}
+              </li>
+            </ul>
+
+        </div>
+
+        <script>
+        angular.module('myApp', []).controller('namesCtrl', function($scope)
+        {
+            $scope.names = [
+                'Python',
+                'Tensorflow',
+                'Keras',
+                'PyTorch',
+                'NLTK',
+                'spaCy',
+                'OpenCV',
+                'C',
+                'C++',
+                'Java',
+                'Git',
+                'HTML5',
+                'CSS3',
+                'JavaScript',
+                'R',
+                'LaTeX',
+                'MASM',
+                'GNU Octave'
+            ];
+        });
+        </script>
+</body>
+</html>

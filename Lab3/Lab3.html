@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Components and Services</title>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <script src="App.js"></script>
+    <script src="Service.js"></script>
+    <script src="MathController.js"></script>
+    <script src="Interval.js"></script>
+    <script src="FileLocation.js"></script>
+    <script src="Component.js"></script>
+</head>
+
+<body ng-app="myApp" align="center">
+
+    <div align="center" class="box">
+      <h2>
+        <mycomp></mycomp>
+      </h2>
+
+        <div ng-controller="mathController">
+            <table>
+              <tr>
+                <td><label>Value 1 :</label></td>
+                <td></td>
+                <td>
+                  <div class="inputBox">
+                    <input type="text" ng-model="x" />
+                  </div>
+                </td>
+                <td></td>
+              </tr>
+
+              <tr>
+                <td><label>Value 2 :</label></td>
+                <td></td>
+                <td>
+                  <div class="inputBox">
+                    <input type="text" ng-model="y" />
+                  </div>
+                </td>
+                <td></td>
+              </tr>
+
+              <tr>
+                <td>Result : </td>
+                <td></td>
+                <td><b>{{result}}</b></td>
+                <td></td>
+              </tr>
+            </table>
+
+            <input type="button" ng-click="calcAdd()" value="Addition" id="myBtn" />
+            <input type="button" ng-click="calcSub()" value="Subtraction" id="myBtn"/>
+            <input type="button" ng-click="calcMul()" value="Multiply" id="myBtn" />
+            <input type="button" ng-click="calcDiv()" value="Division" id="myBtn" />
+            <br>
+        </div>
+    </div>
+
+    <br>
+    <br>
+
+    <div ng-controller="sample">
+      <h2>Time : {{theTime}}</h2>
+    </div>
+
+    <br>
+    <br>
+
+    <div ng-app="myApp" ng-controller="myCtrl" >
+      <h2>File URL : {{myUrl}}</h2>
+    </div>
+
+</body>
+</html>
