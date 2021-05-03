@@ -1,0 +1,101 @@
+<style>
+body
+{
+  font-family: Arial, Helvetica, sans-serif;
+}
+*
+{
+  box-sizing: border-box;
+}
+
+input[type=text], select, textarea
+{
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-top: 6px;
+  margin-bottom: 16px;
+  resize: vertical;
+}
+
+input[type=tel], select, textarea
+{
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-top: 6px;
+  margin-bottom: 16px;
+  resize: vertical;
+}
+
+input[type=email], select, textarea
+{
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-top: 6px;
+  margin-bottom: 16px;
+  resize: vertical;
+}
+
+input[type=submit]
+{
+  background-color: #4CAF50;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type=submit]:hover
+{
+  background-color: #45a049;
+}
+
+.container
+{
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+}
+</style>
+  <h2 style="text-align: center;">Contact Form</h2>
+    <div ng-app="myApp" ng-controller="formCtrl" class="container">
+        <form action="action.php" method="post">
+            <label for = "desc">Title</label>
+                <input type = "text" ng-model="title" name = "title" placeholder = "Mr" pattern = "^[a-zA-Z\s]*$" required>
+            <label for = "fname">First Name</label>
+              <input type = "text" ng-model="firstname" name = "firstname" placeholder = "John" pattern = "^[a-zA-Z\s]*$" required>
+            <label for ="lname">Last Name</label>
+              <input type = "text" ng-model="lastname" name = "lastname" placeholder = "Doe" pattern = "^[a-zA-Z\s]*$" required>
+            <label for = "mobile">Phone Number</label><br>
+                <input type = "tel" ng-model="mobilenumber" name = "mobilenumber" placeholder = "9876543210" pattern="[0-9]{10}" required>
+            <label for = "email">Email</label><br>
+              <input type = "email" ng-model="email" name = "emailid" placeholder = "johndoe@xyz.com" pattern = "[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required>
+            <label for="subject">Subject</label>
+              <textarea ng-model="message" name = "message" placeholder = "Write your message..." style = "height:200px" required></textarea>
+            <button type="submit" name="submit" value="Submit">Submit</button>
+        </form>
+    </div>
+
+    <script>
+        var app = angular.module('myApp', []);
+        app.controller('formCtrl', function($scope)
+        {
+            $scope.title = "";
+            $scope.firstname = "";
+            $scope.lastname = "";
+            $scope.mobilenumber ="";
+            $scope.email = "";
+            $scope.message = "";
+        });
+    </script>
+  </body>
+</html>

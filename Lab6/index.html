@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+    <head>
+      <meta charset="UTF-8">
+      <meta name="description" content="Portfolio Web Page">
+      <meta name="keywords" content="HTML5, CSS3, JavaScript">
+      <meta name="author" content="M Badri Narayanan">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>My Web Page</title>
+      <link rel="icon" type="image/x-icon" href="images/favicon.ico" />
+      <link rel="stylesheet" href="style.css">
+      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+      <script type="text/javascript" src="angular-route.min.js"></script>
+      <script src="myng.js"></script>
+
+    </head>
+    <body>
+        <ng-include src='"header.html"'></ng-include>
+        <br>
+        <br>
+        <br>
+        <main ng-view>
+        </main>
+    </body>
+</html>
