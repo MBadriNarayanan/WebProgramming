@@ -20,3 +20,7 @@ Web Programming Lab work done in Semester VI.
 ## [Lab 9: Node JS and MongoDB](https://github.com/MBadriNarayanan/WebProgramming/tree/main/Lab9)
 
 ## [Lab 10: MEAN Stack](https://github.com/MBadriNarayanan/WebProgramming/tree/main/Lab10)
+
+## [Lab 11: Chat application using Node and Express](https://github.com/MBadriNarayanan/WebProgramming/tree/main/Lab11)
+
+## [Lab 12: RESTful web service for Calculator Application](https://github.com/MBadriNarayanan/WebProgramming/tree/main/Lab12)
