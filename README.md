@@ -24,3 +24,5 @@ Web Programming Lab work done in Semester VI.
 ## [Lab 11: Chat application using Node and Express](https://github.com/MBadriNarayanan/WebProgramming/tree/main/Lab11)
 
 ## [Lab 12: RESTful web service for Calculator Application](https://github.com/MBadriNarayanan/WebProgramming/tree/main/Lab12)
+
+## [Record](https://github.com/MBadriNarayanan/WebProgramming/blob/main/185002018%20UIT1611%20Web%20Programming%20Lab%20Record.pdf)
