@@ -1,4 +1,5 @@
-# WebProgramming
+# WebProgrammingLab
+
 Web Programming Lab work done during VI Semester
 
 ## [Lab 1: HTML and CSS](https://github.com/MBadriNarayanan/WebProgrammingLab/tree/main/Lab1)
